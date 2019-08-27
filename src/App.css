@@ -1,0 +1,524 @@
+:root {
+  --col-spot-green: #13a500;
+  --col-spot-empty: #fff;
+  --col-spot-blocked: #755;
+  /*--col-spot-blocked2: #a51300;*/
+}
+
+.boiteALunchTitre{
+  text-align:center;
+  /* font-family: find-good-font; */
+}
+
+.calendarWeek {
+  display: flex;
+}
+
+.calendarWeek:hover {
+  background-color: #fafafa;
+}
+
+.loginBtn {
+  float: right;
+  margin: 0px 15px;
+}
+
+.logoutBtn {
+  float: right;
+  margin: 0px 15px;
+}
+ 
+
+.firebaseCalendar{
+  clear: both;
+}
+
+.calendarMonth {
+  display:block;
+  margin-bottom:15px;
+  height:55px;
+}
+.calendarMonth div {
+  display:block;
+  float:left;
+}
+
+.checkMassBook {
+  clear:both;
+  margin: 5px 0px 5px 15px;
+}
+
+.checkMassBook h5{
+  margin: 0px 0px 5px 0px;
+}
+
+.daySquare {
+  min-width: 50px;
+  min-height: 100px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  color: #333;
+  float: left;
+  flex: 1;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.daySquare:hover {
+  background-color: #ededed;
+}
+
+.dayTop {
+  height: calc( 100% - 15px);
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
+
+.dayBottom {
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  align-self: flex-end;
+  box-sizing: border-box;
+}
+
+.freeSpots {
+  margin-left: 2px;
+  display: flex;
+  width: 99%;
+  float: left;
+  align-items: flex-end;
+}
+
+.freeSpot {
+  margin-left: 3px;
+  background-color: #13a500;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.freeSpot.off {
+  background-color: var(--col-spot-blocked);
+  
+}
+.freeSpot.res {
+  background-color: var(--col-spot-green);
+}
+.freeSpot.on {
+  background-color: #fff;
+  border: 1px solid #aaa;
+}
+
+.hoverSpot {
+  background-color: rgb( 192, 250, 180) !important;
+}
+
+.bookedMessage{
+  text-align:center;
+  margin-top: -10px;
+  color: #000;
+}
+
+.passedDay {
+  cursor: auto;
+  color: #aaa;
+  opacity: 0.5;
+}
+
+.nowCell {
+  background-color: #e8fde7
+}
+
+.selectedCell {
+  background-color: #ededed;
+}
+
+.hoverCell {
+  background-color: #888;
+}
+
+.willMassBook { 
+  text:#123;
+  /*animation: will-mass-book 1.5s infinite alternate;*/
+}
+.willMassBook .freeSpot.on.change { 
+  animation: will-mass-book-spot 1.5s infinite alternate;
+}
+.willMassBook .freeSpot.off.change { 
+  animation: will-mass-book-spot2 1.5s infinite alternate;
+}
+
+.dayNumber {
+  font-size: 1.2em;
+  font-weight: 400;
+  float: right;
+  margin-top: 5px;
+  margin-right: 10px;
+  opacity: 0.5;
+}
+
+.dayName {
+  font-weight: bolder;
+  text-align: center;
+  min-width: 50px;
+  float: left;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.dayName:hover {
+  background-color: #ededed;
+}
+
+.detailBookables {
+  color: #fff;
+  flex-grow: 1;
+  text-align: left;
+  padding: 15px;
+  background-color: #555;
+  box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, .5);
+  box-sizing: border-box;
+  overflow-y: hidden;
+  animation-name: open-bookables;
+  animation-duration: 0.33s;
+}
+
+.detailBookables a {
+  color: #fff;
+  cursor: pointer;
+}
+
+.titreBooking, .dateBooking {
+  font-weight: 500;
+  margin: 5px;
+}
+
+.dateBooking {
+  font-weight: 500;
+  margin: 5px 0 15px 0;
+  padding-bottom: 5px;
+  border-bottom: dashed 1px;
+}
+
+.formField {
+  float: left;
+  flex-grow: 1;
+  width: 98%; /*calc ( 100% - 10px );*/
+  margin: 5px;
+}
+
+.formField b {
+  float: left;
+  min-width: 80px;
+  text-align: left;
+  margin-left: 15px;
+  font-weight: 500;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.formField.login b {
+  min-width: 190px;
+}
+
+.formField input, .formField textarea {
+  border-radius: 6px;
+  border: solid 1px #aaa;
+  float: left;
+  padding: 2px 5px;
+  flex-grow: 1;
+  width: calc( 100% - 235px);
+}
+
+.formField select {
+  border-radius: 6px;
+  border: solid 1px #aaa;
+  float: left;
+}
+
+.formField input:focus, .formField textarea:focus, .formField select:focus {
+  border-radius: 6px;
+  border: solid 1px #66afe9;
+  outline: 0;
+  outline-color: initial;
+  animation: light-shadow 0.33s forwards;
+}
+
+.arrayInput { 
+  margin-left: 170px;
+}
+
+.arrayField{
+  margin: 10px 0 0 0 !important;
+}
+
+.minusButton{
+  display: inline-flex;
+  background-color: hsl(13, 75%, 54%);
+}
+
+.bookingBoutons {
+  margin-top: 20px;
+}
+
+.paymentSection {
+  display: inline-block;
+  align-content: center;
+  width: 400px;
+  margin: auto;
+}
+
+button {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #FFFFFF;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #fff;
+  background-color: hsl(207, 75%, 66%);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+button.cancel {
+  color: #fff;
+  background-color: rgb(197, 54, 35);
+  border: 0.1em solid #555;
+  border-radius: 5px;
+}
+button:hover {
+  color: #000;
+  background-color: #FFFFFF;
+  border: 0.1em solid #555;
+}
+
+button.toogleOn {
+  float:left;
+  background-color: hsl(132, 75%, 66%);
+  color: #000;
+  border: 0.1em solid #555;
+}
+button.toogleOff {
+  float:left;
+  background-color: inherit;
+  color: #000;
+  border: 0.1em solid #555;
+} 
+
+form.login {
+padding: 0px 15px 0px 15px;
+}
+
+.message.warning {
+color:rgba(200,12,12,0.98);
+}
+
+@media (min-width: 750px) {
+form.login {
+  width:750px;
+  padding: 0px 15px 0px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  }
+}
+
+@media all and (max-width:30em) {
+  button {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
+
+.bouncy {
+  animation: bouncy 5s infinite linear;
+  position: relative;
+}
+
+@keyframes bouncy {
+  0% {
+    top: 0em
+  }
+  40% {
+    top: 0em
+  }
+  43% {
+    top: -0.9em
+  }
+  46% {
+    top: 0em
+  }
+  48% {
+    top: -0.4em
+  }
+  50% {
+    top: 0em
+  }
+  100% {
+    top: 0em;
+  }
+}
+
+.reserv {
+  text-align:left;
+}
+
+.adminHeader {
+display: flex;
+align-items:center;
+justify-content: space-around;
+max-width:700px;
+margin: 10px auto 15px auto;
+}
+.adminPageLink {
+  margin: 5px 5px;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.5em;
+}
+.adminPageLink.active {
+  font-weight:700;
+}
+
+.adminParameters {
+  text-align:left;
+  margin:5px 15px;
+}
+.adminParameters b {
+  min-width:150px;
+  display:inline-block;
+  margin-left:15px;
+}
+.adminParam button {
+  margin-left:15px;
+  margin-top:10px;
+}
+.displayReservations h3 {
+  text-align:left;
+  margin-left:15px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: absolute;
+  top: 100%;
+  /*634px;*/
+  left: 0;
+  opacity: 1;
+  width: 100%;
+  z-index: -123;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.maReservation {
+  color: inherit;
+}
+
+.maReservation.cancelled {
+  text-decoration: line-through;
+  color: #555;
+}
+
+.maReservation .type{ 
+  min-width: 60px;
+  text-align:right;
+  display:inline-block;
+  text-decoration: inherit;
+}
+.maReservation .date{
+  min-width: 150px;
+  margin-left: 1px;
+  margin-right: 1px;
+  text-align:left;
+  display:inline-block;
+  text-decoration: inherit;
+}
+
+.mesReservations .aucuneReservations{
+  color:#888;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes open-bookables {
+  from {
+    max-height: 0px;
+    padding: 0px
+  }
+  to {
+    max-height: 70px;
+    padding: 15px
+  }
+}
+
+@keyframes light-shadow {
+  from {
+    box-shadow: 0;
+  }
+  to {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .07), 0 0 8px rgba(100, 175, 230, 0.5);
+  }
+}
+@keyframes will-mass-book {
+  from {
+    background-color: #fd9;
+  }
+  to {
+    background-color: #fb8830;
+  }
+}
+
+@keyframes will-mass-book-spot {
+  from {
+    background-color: #fff;
+  }
+  to {
+    background-color: var(--col-spot-blocked);
+  }
+}
+@keyframes will-mass-book-spot2 {
+  from {
+    background-color: var(--col-spot-blocked);
+  }
+  to {
+    background-color: var(--col-spot-green);
+  }
+}

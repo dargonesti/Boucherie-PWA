@@ -1,0 +1,107 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/admins/$(request.auth.token.email));
+    }
+    
+    match /stripe_customers/{uid} {
+      allow write: if request.auth.uid == uid;
+      allow write: if request.auth.uid == uid 
+      							&& request.resource.data.isAdminUser == 
+                    	resource.data.isAdminUser;
+
+      match /sources/{sourceId} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /tokens/{sourceId} {
+        allow read,write: if request.auth.uid == uid;
+      }
+      match /charges/{chargeId} {
+        allow read, write: if request.auth.uid == uid;
+      }
+    }
+    
+      match /bookingTemplate/{templateId}{
+        allow read: if true;
+      }
+      match /users/{uid} {
+        allow read,write: if request.auth.uid == uid;
+      }
+      match /reservations/{reservationId} {
+        allow read : if request.auth != null && 
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email)) ;
+        allow create: if request.resource.data.user == request.auth.uid;
+        allow update: if exists(/databases/$(database)/documents/admins/$(request.auth.token.email)) && 
+        !request.resource.data.active;
+      }
+      match /reservationsPublic/{reservationId} {
+        allow read;        
+      	allow write: if request.resource.data.user == request.auth.uid;       
+      }
+      match /admins/{adminId}{
+      	allow read: if request.auth != null && request.auth.token.email == adminId;
+      }
+      
+      match /adminParameters/{paramId} {
+        allow read;
+        allow create: if request.auth != null && 
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email)) &&
+        request.resource.data.user == request.auth.uid;
+      }
+  }
+}
+
+
+
+/////////////////////
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/admins/$(request.auth.token.email));
+    }
+    
+    match /stripe_customers/{uid} {
+      allow write: if request.auth.uid == uid;
+      allow write: if request.auth.uid == uid 
+      							&& request.resource.data.isAdminUser == 
+                    	resource.data.isAdminUser;
+
+      match /sources/{sourceId} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /tokens/{sourceId} {
+        allow read,write: if request.auth.uid == uid;
+      }
+      match /charges/{chargeId} {
+        allow read, write: if request.auth.uid == uid;
+      }
+    }
+    
+      match /bookingTemplate/{templateId}{
+        allow read: if true;
+      }
+      match /users/{uid} {
+        allow read,write: if request.auth.uid == uid;
+      }
+      match /reservations/{reservationId} {
+        allow read : if request.auth != null && 
+        ( request.auth.token.email == request.resource.data.email || isAdmin());
+        allow create: if request.resource.data.user == request.auth.uid;
+        allow update: if !request.resource.data.active && isAdmin() ;
+      }
+      match /reservationsPublic/{reservationId} {
+        allow read;        
+      	allow write: if request.resource.data.user == request.auth.uid;       
+      }
+      match /admins/{adminId}{
+      	allow read: if request.auth != null && request.auth.token.email == adminId;
+      }
+      
+      match /adminParameters/{paramId} {
+        allow read;
+        allow create: if request.auth != null && 
+        request.resource.data.user == request.auth.uid && 
+        isAdmin();
+      }
+  }
+}
