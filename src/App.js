@@ -15,6 +15,8 @@ import {  useList} from 'react-firebase-hooks/database';
 import useLocalStorage from "./myUseLocalStorage.js";
 import { sameDay, getAvailablities, setParams, setBookings, setReservations } from "./utils";
 
+import QuaggaReader from "./reader/QuaggaReader.js";
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyC4nguL_nUL8alZO2FEMc4HIhjFEXsU0RA",
@@ -167,6 +169,7 @@ function App() {
     return (
       <div className="App">
         <LoginBar />
+        <QuaggaReader />
         <DisplayCommandes {...{commandes:bookings, reservAdmin:bookings}} />
         <ListCommandes {...{ bookings, reservations, onBooking, params }} />
         {user && <MesReservations {...{user,bookings, params}} />}
