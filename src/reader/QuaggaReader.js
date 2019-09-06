@@ -49,6 +49,7 @@ const ReaderApp = (props) => {
                 function (err) {
                     if (err) {
                         console.error(err);
+                        // toast(Erreur Camera);
                         return false;//self.handleError(err);
                     }
                     //Quagga.registerResultCollector(resultCollector);
