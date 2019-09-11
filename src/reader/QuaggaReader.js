@@ -38,7 +38,7 @@ const ReaderApp = (props) => {
             Quagga.init({
                 inputStream: {
                     name: "Live",
-                    type: "LiveStream",
+                    type: "VideoStream",//LiveStream
                     target: document.querySelector('#codeReaderCanvas')    // Or '#yourElement' (optional)
                 },
                 decoder: {
